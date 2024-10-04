@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgecweg2wcwsv"]
+
+[ext_resource type="ArrayMesh" uid="uid://drj51xvx3pvok" path="res://Assets/3dModels/Terrain_test.obj" id="1_pibi8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jddjm"]
+albedo_color = Color(0.810947, 0.531357, 0.742828, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_crev4"]
+size = Vector3(1.98489, 1.99219, 1.99609)
+
+[node name="TerrainBody" type="RigidBody3D"]
+collision_layer = 3
+collision_mask = 3
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="TerrainTest" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_jddjm")
+mesh = ExtResource("1_pibi8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00370789, 0, -0.00195313)
+shape = SubResource("BoxShape3D_crev4")
