@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=3 uid="uid://ctx8ooxaoj4wo"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/options.gd" id="1_7btrt"]
+[ext_resource type="Texture2D" uid="uid://dxr7og7g18tol" path="res://Assets/Images/foto-portada.png" id="1_pgfyj"]
+
+[sub_resource type="Theme" id="Theme_qmgj5"]
+default_font_size = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mdr6"]
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_dhbd4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yo0uf"]
+bg_color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j1xry"]
+bg_color = Color(0.323281, 0.318493, 0.33932, 1)
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7btrt")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.412152, 0.412152, 0.412152, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_pgfyj")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -118.5
+offset_top = -112.0
+offset_right = 118.5
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_qmgj5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6mdr6")
+text = "Options"
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_qmgj5")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_6mdr6")
+text = "Volume"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="Back" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_dhbd4")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxFlat_yo0uf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_j1xry")
+text = "Back"
+
+[connection signal="value_changed" from="VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_pressed"]
