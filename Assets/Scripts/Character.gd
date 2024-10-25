@@ -28,7 +28,7 @@ var free_pinJoint
 @onready var pin_joint_3d: PinJoint3D
 @onready var chain = $Chain
 @onready var chain_2 = $Chain2
-@onready var Bounce_velocity= 600
+@onready var Bounce_velocity= 15
 func _ready() -> void:
 	ray.enabled=true
 	chain.visible=false
@@ -133,6 +133,12 @@ func chain_stretch(object: MeshInstance3D, origin: Vector3, marker: Vector3):
 
 
 
-func _on_animatable_body_3d_enemy_killed() -> void:
-	linear_velocity.y=Bounce_velocity
-	print("JIJIJA")
+
+
+
+
+
+func _on_enemy_1_enemy_killed() -> void:
+	var direction=Vector3.UP
+	apply_central_impulse(direction*2)
+	pass # Replace with function body.

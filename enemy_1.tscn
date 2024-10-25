@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" path="res://enemy_1.gd" id="1_fkdst"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_iljhi"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_8i2sc"]
+size = Vector3(0.5, 0.5, 0.5)
 
-[sub_resource type="SphereMesh" id="SphereMesh_wl5a7"]
+[sub_resource type="BoxMesh" id="BoxMesh_7el0y"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_lcudg"]
-radius = 0.580579
+[sub_resource type="BoxShape3D" id="BoxShape3D_0fkpc"]
+size = Vector3(1.2, 1.2, 1.2)
 
 [node name="Enemy_1" type="AnimatableBody3D"]
 collision_layer = 5
@@ -15,16 +16,16 @@ collision_mask = 7
 script = ExtResource("1_fkdst")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_iljhi")
+shape = SubResource("BoxShape3D_8i2sc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_wl5a7")
+mesh = SubResource("BoxMesh_7el0y")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 4
 collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("SphereShape3D_lcudg")
+shape = SubResource("BoxShape3D_0fkpc")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

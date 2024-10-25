@@ -18,9 +18,8 @@ func death():
 
 
 
-
 func _on_area_3d_body_entered(body):
-	if body is Personaje: 
+	if body is Personaje:
 		enemy_killed.emit()
-		print("eso tilín")
-	
+		queue_free()
+	pass # Replace with function body.
