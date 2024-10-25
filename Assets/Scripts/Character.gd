@@ -1,6 +1,7 @@
 class_name Personaje
 extends RigidBody3D
 
+signal player_death()
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -28,7 +29,7 @@ var free_pinJoint
 @onready var pin_joint_3d: PinJoint3D
 @onready var chain = $Chain
 @onready var chain_2 = $Chain2
-@onready var Bounce_velocity= 15
+@onready var too_low = -100
 func _ready() -> void:
 	ray.enabled=true
 	chain.visible=false
@@ -38,6 +39,9 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _physics_process(delta: float) -> void:
+	if position.y < too_low or null:
+		player_death.emit()
+		queue_free()
 	if ray.is_colliding():
 		sprite_3d.modulate=Color.RED
 	else:
