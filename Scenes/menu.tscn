@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://uv6yxmtjy1c3"]
+
+[ext_resource type="Texture2D" uid="uid://dxr7og7g18tol" path="res://Assets/Images/foto-portada.png" id="1_cs81o"]
+[ext_resource type="Script" path="res://Assets/Scripts/menu.gd" id="1_eojuo"]
+[ext_resource type="FontFile" uid="uid://c4tp61romcedr" path="res://Assets/Fonts/Gothica-Book.ttf" id="3_2jsq5"]
+
+[sub_resource type="FontVariation" id="FontVariation_8rihi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kb8gb"]
+bg_color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvpf6"]
+bg_color = Color(0.323281, 0.318493, 0.33932, 1)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eojuo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.412152, 0.412152, 0.412152, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_cs81o")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -118.5
+offset_top = -112.0
+offset_right = 118.5
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_8rihi")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxFlat_kb8gb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_yvpf6")
+text = "Start"
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_2jsq5")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxFlat_kb8gb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_yvpf6")
+text = "Options"
+
+[node name="Credits" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxFlat_kb8gb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_yvpf6")
+text = "Credits"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxFlat_kb8gb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_yvpf6")
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -15,6 +15,7 @@ contact_monitor = true
 max_contacts_reported = 1
 
 [node name="TerrainTest" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0105588, -0.0105586)
 material_override = SubResource("StandardMaterial3D_jddjm")
 mesh = ExtResource("1_pibi8")
 
