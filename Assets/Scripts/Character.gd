@@ -5,6 +5,7 @@ signal player_death()
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const sensitibity = 0.002
+const SIDE_IMPULSE = 2.0
 
 var rotation_angle = deg_to_rad(-90)
 var rotation_basis = Basis().rotated(Vector3.UP, rotation_angle)
@@ -15,7 +16,11 @@ var mouse_input=Vector2()
 var hooked_der=false
 var hook_position_der=Vector3(0,0,0)
 var free_pinJoint
+
+var hook_in_air=false
+
 var chain_len=3
+
 
 @export var chain_mesh: Mesh
 @export var chain_cell_scene: PackedScene
@@ -31,6 +36,10 @@ var chain_len=3
 @onready var chain = $Chain
 @onready var chain_2 = $Chain2
 
+@onready var Bounce_velocity= 15
+@onready var raycast_down: RayCast3D = $RayCastDown
+
+
 
 @onready var left_chain: RigidBody3D = $Left_Chain
 @onready var left_chain_target: MeshInstance3D = $Head/Camera3D/Left_Chain_Target
@@ -41,20 +50,31 @@ var chain_len=3
 
 @onready var too_low = -100
 
+
 func _ready() -> void:
 	ray.enabled=true
 	chain.visible=false
 	chain_2.visible=false
 	rigid_marker.visible=false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	raycast_down.enabled = false
+	await get_tree().create_timer(0.01).timeout
+	raycast_down.enabled = true
 	
 func _physics_process(delta: float) -> void:
+
+	if is_in_air():
+		hook_in_air = true
+	elif !is_in_air():
+		hook_in_air = false
+
 
 	# Indica si la cadena llega o nó a la pared
 
 	if position.y < too_low or null:
 		player_death.emit()
 		queue_free()
+
 	if ray.is_colliding():
 		sprite_3d.modulate=Color.RED
 	else:
@@ -164,6 +184,14 @@ func _physics_process(delta: float) -> void:
 	rotation_degrees.y-=mouse_input.x*delta*10.0
 	mouse_input=Vector2.ZERO
 	
+	if hook_in_air:
+		if Input.is_action_just_pressed("Move_left"):
+			print("Impulso Izquierda detectado")
+			apply_side_impulse(Vector3(-SIDE_IMPULSE, 0, 0))
+		elif Input.is_action_just_pressed("Move_right"):
+			print("Impulso Derecha detectado")
+			apply_side_impulse(Vector3(SIDE_IMPULSE, 0, 0))
+	
 func _input(event):
 	if event is InputEventMouseMotion:
 		mouse_input=event.relative
@@ -177,3 +205,19 @@ func chain_stretch(object: MeshInstance3D, origin: Vector3, marker: Vector3):
 	object.scale=Vector3(0.05,0.05,distance)
 	object.look_at(marker, Vector3.UP)
 	object.global_transform.origin=middle
+
+
+
+
+
+func apply_side_impulse(velocity: Vector3):
+	linear_velocity += velocity
+
+func is_in_air() -> bool:
+	return not raycast_down.is_colliding()
+
+
+func _on_enemy_1_enemy_killed() -> void:
+	var direction=Vector3.UP
+	apply_central_impulse(direction*2)
+	pass # Replace with function body.
