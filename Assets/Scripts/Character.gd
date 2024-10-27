@@ -1,3 +1,4 @@
+class_name Personaje
 extends RigidBody3D
 
 signal player_death()
@@ -5,7 +6,7 @@ signal player_death()
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const sensitibity = 0.002
-const SIDE_IMPULSE = 2.0
+const SIDE_IMPULSE = 5.0
 
 var rotation_angle = deg_to_rad(-90)
 var rotation_basis = Basis().rotated(Vector3.UP, rotation_angle)
@@ -211,6 +212,7 @@ func chain_stretch(object: MeshInstance3D, origin: Vector3, marker: Vector3):
 
 
 func apply_side_impulse(velocity: Vector3):
+	print("se aplico la velocidad")
 	linear_velocity += velocity
 
 func is_in_air() -> bool:
