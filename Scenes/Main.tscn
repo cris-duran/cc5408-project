@@ -1,10 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://ki01rvarfvr6"]
+[gd_scene load_steps=17 format=3 uid="uid://ki01rvarfvr6"]
 
 [ext_resource type="ArrayMesh" uid="uid://drj51xvx3pvok" path="res://Assets/3dModels/Terrain_test.obj" id="1_p32dt"]
 [ext_resource type="PackedScene" uid="uid://d4ls43nckhuyh" path="res://Scenes/Character.tscn" id="2_661i2"]
+[ext_resource type="Texture2D" uid="uid://15hv0l8yroj" path="res://icon.svg" id="2_silj6"]
 [ext_resource type="PackedScene" uid="uid://bgecweg2wcwsv" path="res://Scenes/Terrain_body.tscn" id="3_2ubke"]
 [ext_resource type="PackedScene" uid="uid://cbnwlklbclh8o" path="res://Scenes/Pause.tscn" id="4_6qjmq"]
+
 [ext_resource type="PackedScene" uid="uid://4modn5t8x07o" path="res://enemy_1.tscn" id="5_r7n5d"]
+[ext_resource type="PackedScene" uid="uid://dlj8ku0okq4x0" path="res://defeat_menu.tscn" id="6_382av"]
+[ext_resource type="PackedScene" uid="uid://fbrli2jl2qgb" path="res://Victory_menu.tscn" id="7_l58jm"]
+
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u23il"]
 albedo_color = Color(1, 0.2, 0.156863, 1)
@@ -16,15 +21,18 @@ albedo_color = Color(5.05373e-06, 0.54394, 0.543967, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ll66"]
 albedo_color = Color(0.305882, 1, 0.509804, 1)
+albedo_texture = ExtResource("2_silj6")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gbhe2"]
-size = Vector3(41.0935, 0.656708, 48.8165)
+size = Vector3(32.7657, 0.656708, 39.3145)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mv7tc"]
-albedo_color = Color(0.533333, 1, 1, 1)
+albedo_color = Color(0.533333, 0.537255, 1, 1)
+albedo_texture = ExtResource("2_silj6")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6l0hn"]
-albedo_color = Color(0.533333, 1, 1, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ve0xn"]
+albedo_color = Color(0.321569, 0.572549, 1, 1)
+albedo_texture = ExtResource("2_silj6")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2t8uo"]
 size = Vector3(1.39917, 5.12415, 1.96783)
@@ -67,13 +75,13 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="TerrainTest" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(20.4851, 0, 0, 0, 0.448515, 0, 0, 0, 24.3176, 0.506085, -0.91384, 0.167058)
+transform = Transform3D(16.4647, 0, 0, 0, 0.36049, 0, 0, 0, 19.545, 0.506085, -0.91384, 0.167058)
 mesh = ExtResource("1_p32dt")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_2ll66")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.577806, -0.908249, 0.19071)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.538374, -0.908249, 0.165268)
 shape = SubResource("BoxShape3D_gbhe2")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -99,7 +107,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_mv7tc")
 transform = Transform3D(-3.04635e-08, 13.8583, 0, -0.696923, -6.05763e-07, 0, 0, 0, 19.0289, 3.49781, 6.79151, 4.48778)
 mesh = ExtResource("1_p32dt")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_6l0hn")
+surface_material_override/0 = SubResource("StandardMaterial3D_ve0xn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.15778, 1.79059, 4.4869)
@@ -117,4 +125,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, 10)
 [node name="Enemy_1" parent="." instance=ExtResource("5_r7n5d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5842, 5.52958, 20.7447)
 
+[node name="Defeat_menu" parent="." instance=ExtResource("6_382av")]
+visible = false
+
+[node name="Victory_menu" parent="." instance=ExtResource("7_l58jm")]
+visible = false
+
+[connection signal="player_death" from="CharacterBody3D" to="Defeat_menu" method="_on_character_body_3d_player_death"]
 [connection signal="enemy_killed" from="Enemy_1" to="CharacterBody3D" method="_on_enemy_1_enemy_killed"]
+
