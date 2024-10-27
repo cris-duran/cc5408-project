@@ -1,10 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://ki01rvarfvr6"]
+[gd_scene load_steps=17 format=3 uid="uid://ki01rvarfvr6"]
 
 [ext_resource type="ArrayMesh" uid="uid://drj51xvx3pvok" path="res://Assets/3dModels/Terrain_test.obj" id="1_p32dt"]
 [ext_resource type="PackedScene" uid="uid://d4ls43nckhuyh" path="res://Scenes/Character.tscn" id="2_661i2"]
 [ext_resource type="Texture2D" uid="uid://15hv0l8yroj" path="res://icon.svg" id="2_silj6"]
 [ext_resource type="PackedScene" uid="uid://bgecweg2wcwsv" path="res://Scenes/Terrain_body.tscn" id="3_2ubke"]
 [ext_resource type="PackedScene" uid="uid://cbnwlklbclh8o" path="res://Scenes/Pause.tscn" id="4_6qjmq"]
+
+[ext_resource type="PackedScene" uid="uid://4modn5t8x07o" path="res://enemy_1.tscn" id="5_r7n5d"]
+[ext_resource type="PackedScene" uid="uid://dlj8ku0okq4x0" path="res://defeat_menu.tscn" id="6_382av"]
+[ext_resource type="PackedScene" uid="uid://fbrli2jl2qgb" path="res://Victory_menu.tscn" id="7_l58jm"]
+
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u23il"]
 albedo_color = Color(1, 0.2, 0.156863, 1)
@@ -113,3 +118,16 @@ shape = SubResource("BoxShape3D_kj26k")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, 10)
 
 [node name="Pause" parent="." instance=ExtResource("4_6qjmq")]
+
+[node name="Enemy_1" parent="." instance=ExtResource("5_r7n5d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5842, 5.52958, 20.7447)
+
+[node name="Defeat_menu" parent="." instance=ExtResource("6_382av")]
+visible = false
+
+[node name="Victory_menu" parent="." instance=ExtResource("7_l58jm")]
+visible = false
+
+[connection signal="player_death" from="CharacterBody3D" to="Defeat_menu" method="_on_character_body_3d_player_death"]
+[connection signal="enemy_killed" from="Enemy_1" to="CharacterBody3D" method="_on_enemy_1_enemy_killed"]
+

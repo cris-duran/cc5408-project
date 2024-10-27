@@ -1,5 +1,6 @@
 extends RigidBody3D
 
+signal player_death()
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -30,11 +31,15 @@ var chain_len=3
 @onready var chain = $Chain
 @onready var chain_2 = $Chain2
 
+
 @onready var left_chain: RigidBody3D = $Left_Chain
 @onready var left_chain_target: MeshInstance3D = $Head/Camera3D/Left_Chain_Target
 @onready var left_chain_childs: Node3D = $Left_Chain/Left_Chain_Childs
 
 
+
+
+@onready var too_low = -100
 
 func _ready() -> void:
 	ray.enabled=true
@@ -44,21 +49,12 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _physics_process(delta: float) -> void:
-	#if chain_len>global_transform.origin.distance_to(left_chain.global_transform.origin):
-		#chain_len-=2
-		#var child=left_chain_childs.get_child(left_chain_childs.get_child_count()-1)
-		#left_chain_childs.remove_child(child)
-		#child.queue_free()
-	#if global_transform.origin.distance_to(left_chain.global_transform.origin)>=chain_len:
-		#var chain_cell_instance=chain_cell_scene.instantiate()
-		#left_chain_childs.add_child(chain_cell_instance)
-		#var distance=global_transform.origin.distance_to(left_chain.global_transform.origin)
-		#var direction=(left_chain.global_transform.origin-global_transform.origin).normalized()
-		#chain_cell_instance.global_transform.origin=global_transform.origin+direction*chain_len
-		#chain_cell_instance.look_at(left_chain.global_transform.origin, Vector3.UP)
-		#chain_len+=2
-	
+
 	# Indica si la cadena llega o nó a la pared
+
+	if position.y < too_low or null:
+		player_death.emit()
+		queue_free()
 	if ray.is_colliding():
 		sprite_3d.modulate=Color.RED
 	else:
