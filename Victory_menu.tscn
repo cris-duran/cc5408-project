@@ -61,3 +61,7 @@ modulate = Color(0.985798, 0, 0.167321, 0.858824)
 layout_mode = 2
 theme_override_font_sizes/font_size = 38
 text = "EXIT THE GAME"
+
+[connection signal="pressed" from="VBoxContainer/retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="VBoxContainer/back_to_menu" to="." method="_on_back_to_menu_pressed"]
+[connection signal="pressed" from="VBoxContainer/exit" to="." method="_on_exit_pressed"]

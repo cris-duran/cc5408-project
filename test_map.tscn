@@ -1,0 +1,149 @@
+[gd_scene load_steps=5 format=3 uid="uid://bocsliy0c5rdp"]
+
+[ext_resource type="ArrayMesh" uid="uid://drj51xvx3pvok" path="res://Assets/3dModels/Terrain_test.obj" id="1_oycl3"]
+[ext_resource type="Texture2D" uid="uid://15hv0l8yroj" path="res://icon.svg" id="2_1lktu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1pjhb"]
+albedo_color = Color(0.305882, 1, 0.509804, 1)
+albedo_texture = ExtResource("2_1lktu")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q06d0"]
+size = Vector3(32.7657, 0.656708, 39.3145)
+
+[node name="TestMap" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132759, 3.8147e-06, -0.0222206)
+
+[node name="Floor2" type="StaticBody3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.2, 39.387, 2.22646, -0.00971222)
+collision_layer = 3
+collision_mask = 3
+
+[node name="TerrainTest" type="MeshInstance3D" parent="Floor2"]
+transform = Transform3D(16.4647, 0, 0, 0, 0.36049, 0, 0, 0, 19.545, 0.506085, -0.91384, 0.167058)
+mesh = ExtResource("1_oycl3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_1pjhb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.538374, -0.908249, 0.165268)
+shape = SubResource("BoxShape3D_q06d0")
+
+[node name="Ceiling" type="StaticBody3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 1, 0, 0, 0, 0.2, 35.9781, 7.1859, -0.00971222)
+collision_layer = 3
+collision_mask = 3
+
+[node name="TerrainTest" type="MeshInstance3D" parent="Ceiling"]
+transform = Transform3D(16.4647, 0, 0, 0, 0.36049, 0, 0, 0, 19.545, 0.506085, -0.91384, 0.167058)
+mesh = ExtResource("1_oycl3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_1pjhb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.538374, -0.908249, 0.165268)
+shape = SubResource("BoxShape3D_q06d0")
+
+[node name="EnemyJump" type="StaticBody3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.2, 57.9753, 16.3233, -0.00971222)
+collision_layer = 3
+collision_mask = 3
+
+[node name="TerrainTest" type="MeshInstance3D" parent="EnemyJump"]
+transform = Transform3D(16.4647, 0, 0, 0, 0.36049, 0, 0, 0, 19.545, 0.506088, -6.04619, 0.167058)
+mesh = ExtResource("1_oycl3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_1pjhb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyJump"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.538376, -6.0406, 0.165268)
+shape = SubResource("BoxShape3D_q06d0")
+
+[node name="ColumpiarCaida" type="StaticBody3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.2, 118.704, 16.3233, -0.00971222)
+collision_layer = 3
+collision_mask = 3
+
+[node name="TerrainTest" type="MeshInstance3D" parent="ColumpiarCaida"]
+transform = Transform3D(16.4647, 0, 0, 0, 0.36049, 0, 0, 0, 19.545, 0.506088, -6.04619, 0.167058)
+mesh = ExtResource("1_oycl3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_1pjhb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ColumpiarCaida"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.538376, -6.0406, 0.165268)
+shape = SubResource("BoxShape3D_q06d0")
+
+[node name="Columpiar" type="StaticBody3D" parent="."]
+transform = Transform3D(1.7, 0, 0, 0, 1, 0, 0, 0, 0.2, 93.9874, 23.7224, 0.125647)
+collision_layer = 3
+collision_mask = 3
+
+[node name="TerrainTest" type="MeshInstance3D" parent="Columpiar"]
+transform = Transform3D(30.465, 0, 0, 0, 0.36, 0, 0, 0, 19.545, -6.22925, -6.04619, 0.167058)
+mesh = ExtResource("1_oycl3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_1pjhb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Columpiar"]
+transform = Transform3D(1.88, 0, 0, 0, 1, 0, 0, 0, 1, -6.20824, -6.0406, 0.210587)
+shape = SubResource("BoxShape3D_q06d0")
+
+[node name="Wall" type="StaticBody3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, -4.37114e-08, -0.2, 0, 1, -8.74228e-09, 89.8692, 23.7224, 10.2032)
+collision_layer = 3
+collision_mask = 3
+
+[node name="TerrainTest" type="MeshInstance3D" parent="Wall"]
+transform = Transform3D(40.42, 0, 0, 0, 0.36, -5.21065e-12, 0, 4.26326e-14, 44, 1.41261, -6.04619, 72.6138)
+mesh = ExtResource("1_oycl3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_1pjhb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 2.5, 10.2684, -5.96797, 68.4117)
+shape = SubResource("BoxShape3D_q06d0")
+
+[node name="Wall2" type="StaticBody3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, -4.37114e-08, -0.2, 0, 1, -8.74228e-09, 89.8692, 23.7224, 1.88125)
+collision_layer = 3
+collision_mask = 3
+
+[node name="TerrainTest" type="MeshInstance3D" parent="Wall2"]
+transform = Transform3D(40.42, 0, 0, 0, 0.36, -5.21065e-12, 0, 4.26326e-14, 44, 1.41261, -6.04619, 72.6138)
+mesh = ExtResource("1_oycl3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_1pjhb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2"]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 2.5, 9.92296, -5.98375, 76.802)
+shape = SubResource("BoxShape3D_q06d0")
+
+[node name="Wall3" type="StaticBody3D" parent="."]
+transform = Transform3D(-6.55671e-08, 1, -8.74228e-09, 0, -4.37114e-08, -0.2, -1.5, -4.37114e-08, 3.82137e-16, 37.6986, 23.7224, 39.8572)
+collision_layer = 3
+collision_mask = 3
+
+[node name="TerrainTest" type="MeshInstance3D" parent="Wall3"]
+transform = Transform3D(3, 0, 2.02441e-19, 0, 0.36, -5.94014e-12, -2.71051e-20, 7.81597e-14, 30, 26.5602, -6.04619, 59.0727)
+mesh = ExtResource("1_oycl3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_1pjhb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall3"]
+transform = Transform3D(0.155, -1.06581e-14, -1.62524e-20, 2.66454e-15, 1, -2.47226e-23, 2.32934e-21, -4.17594e-22, 1.48, 26.5823, -6.10887, 59.6462)
+shape = SubResource("BoxShape3D_q06d0")
+
+[node name="Wall4" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.80825e-09, 0.5, -8.74228e-09, 0, -2.18557e-08, -0.2, -0.11, -2.18557e-08, 3.82137e-16, 130.415, 27.6976, 0.105002)
+collision_layer = 3
+collision_mask = 3
+
+[node name="TerrainTest" type="MeshInstance3D" parent="Wall4"]
+transform = Transform3D(40.42, 0, 0, 0, 0.36, -5.21065e-12, 0, 4.26326e-14, 44, 1.41261, -6.04619, 72.6138)
+mesh = ExtResource("1_oycl3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_1pjhb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall4"]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 2.5, 9.92296, -5.98375, 76.802)
+shape = SubResource("BoxShape3D_q06d0")
