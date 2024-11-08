@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgqgndclx6l1t"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/audio_controller.gd" id="1_3ltgk"]
+[ext_resource type="AudioStream" uid="uid://bvriba03ftrs2" path="res://Assets/Music/Achachak - Andantino.mp3" id="2_k27j2"]
+
+[node name="AudioController" type="Node2D"]
+script = ExtResource("1_3ltgk")
+
+[node name="bg_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_k27j2")

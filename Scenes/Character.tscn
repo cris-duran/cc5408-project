@@ -1,48 +1,137 @@
-[gd_scene load_steps=7 format=3 uid="uid://d4ls43nckhuyh"]
+[gd_scene load_steps=19 format=3 uid="uid://d4ls43nckhuyh"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Character.gd" id="1_gwqmo"]
 [ext_resource type="ArrayMesh" uid="uid://b1d8g86p0sh6w" path="res://Assets/3dModels/Character_test.obj" id="2_8lgbi"]
 [ext_resource type="Texture2D" uid="uid://15hv0l8yroj" path="res://icon.svg" id="3_2kfuk"]
+[ext_resource type="PackedScene" uid="uid://b0rgjeo8c4wfk" path="res://Scenes/left_chain_cell.tscn" id="3_si7uc"]
+[ext_resource type="ArrayMesh" uid="uid://drj51xvx3pvok" path="res://Assets/3dModels/Terrain_test.obj" id="3_sv5bi"]
+[ext_resource type="Script" path="res://Assets/Scripts/left_chain.gd" id="5_pvsq0"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vqm2u"]
+friction = 10.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2incw"]
+albedo_color = Color(0.101961, 0, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hg53d"]
 albedo_color = Color(0.517184, 0.517184, 0.517184, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fe2qu"]
-size = Vector3(3.10327, 4.17435, 2.49939)
+size = Vector3(3.10327, 4.31655, 2.49939)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6vq2o"]
-render_priority = 1
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j00kr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dkryg"]
 albedo_color = Color(0, 0, 0, 1)
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oqfv5"]
+albedo_color = Color(0.0431373, 0.415686, 0.317647, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8lbwc"]
+size = Vector3(0.599976, 0.198669, 0.19101)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o0x3l"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ufsjl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fmti7"]
+albedo_color = Color(0.71383, 0.598814, 0.223072, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b1cha"]
+size = Vector3(0.151062, 0.128479, 0.134766)
+
+[node name="CharacterBody3D" type="RigidBody3D"]
 collision_layer = 2
 collision_mask = 2
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_vqm2u")
+linear_velocity = Vector3(0, -10, 0)
 script = ExtResource("1_gwqmo")
+chain_mesh = ExtResource("3_sv5bi")
+chain_cell_scene = ExtResource("3_si7uc")
 
 [node name="CharacterTest" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_2incw")
 mesh = ExtResource("2_8lgbi")
 surface_material_override/0 = SubResource("StandardMaterial3D_hg53d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.141968, 0.439316, 0.00457764)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.141968, 0.112374, 0.00457764)
 shape = SubResource("BoxShape3D_fe2qu")
 
 [node name="Head" type="Node3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 2.09034, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.608655, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
+current = true
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
 transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -2.02539e-08, 0, -0.463334)
 enabled = false
 target_position = Vector3(0, 10, 0)
 
-[node name="Marker3D" type="Marker3D" parent="Head/Camera3D"]
+[node name="Chain_General_Target" type="Marker3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.4)
+
+[node name="TerrainTest" type="MeshInstance3D" parent="Head/Camera3D/Chain_General_Target"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_j00kr")
+mesh = ExtResource("3_sv5bi")
+skeleton = NodePath("../..")
 
 [node name="Sprite3D" type="Sprite3D" parent="Head/Camera3D"]
-transform = Transform3D(0.0307549, 0, 0, 0, 0.0307549, 0, 0, 0, 0.0307549, -4.28176e-08, 0, -0.979553)
-material_override = SubResource("StandardMaterial3D_6vq2o")
-modulate = Color(0, 0, 0, 1)
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, -2.99581e-08, 0, -0.685362)
 texture = ExtResource("3_2kfuk")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Rigid_marker" type="RigidBody3D" parent="Head/Camera3D"]
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+
+[node name="TerrainTest" type="MeshInstance3D" parent="Head/Camera3D/Rigid_marker"]
+transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_dkryg")
+mesh = ExtResource("3_sv5bi")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_oqfv5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/Camera3D/Rigid_marker"]
+shape = SubResource("BoxShape3D_8lbwc")
+disabled = true
+
+[node name="Left_Chain_Target" type="MeshInstance3D" parent="Head/Camera3D"]
+transform = Transform3D(-2.18557e-09, 0, 0.05, 0, 0.05, 0, -0.05, 0, -2.18557e-09, 0, 0, 0)
+mesh = ExtResource("3_sv5bi")
+skeleton = NodePath("../../..")
+
+[node name="Chain" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_o0x3l")
+mesh = ExtResource("3_sv5bi")
+
+[node name="Chain2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_ufsjl")
+mesh = ExtResource("3_sv5bi")
+
+[node name="Left_Chain" type="RigidBody3D" parent="."]
+collision_layer = 128
+collision_mask = 61
+gravity_scale = 0.0
+sleeping = true
+script = ExtResource("5_pvsq0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Left_Chain"]
+transform = Transform3D(0.07, 0, 0, 0, 0.07, 0, 0, 0, 0.07, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_fmti7")
+mesh = ExtResource("3_sv5bi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Left_Chain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00369263, 0.00411987, -0.000976563)
+shape = SubResource("BoxShape3D_b1cha")
+
+[node name="Left_Chain_Childs" type="Node3D" parent="Left_Chain"]

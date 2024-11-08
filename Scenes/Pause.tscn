@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://cbnwlklbclh8o"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/pause.gd" id="1_7krly"]
+[ext_resource type="Texture2D" uid="uid://dxr7og7g18tol" path="res://Assets/Images/foto-portada.png" id="2_34wev"]
+
+[sub_resource type="Theme" id="Theme_rr7j3"]
+default_font_size = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_derhb"]
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_olkuq"]
+default_font_size = 20
+
+[sub_resource type="Theme" id="Theme_oeayj"]
+default_font_size = 20
+
+[sub_resource type="Theme" id="Theme_0j0i4"]
+default_font_size = 20
+
+[node name="Pause" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_7krly")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.412152, 0.412152, 0.412152, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_34wev")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.5
+offset_top = -20.0
+offset_right = 23.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_rr7j3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_derhb")
+text = "Pause"
+
+[node name="Resume" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_olkuq")
+text = "Resume (Esc)"
+
+[node name="Restart" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_oeayj")
+text = "Restart (R)"
+
+[node name="Menu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_oeayj")
+text = "Back to menu"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_0j0i4")
+text = "Quit"
