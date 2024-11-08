@@ -2,6 +2,7 @@ class_name Personaje
 extends RigidBody3D
 
 signal player_death()
+signal player_win()
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -223,3 +224,7 @@ func _on_enemy_1_enemy_killed() -> void:
 	var direction=Vector3.UP
 	apply_central_impulse(direction*2)
 	pass # Replace with function body.
+	
+func _on_win() -> void:
+	player_win.emit()
+	pass
