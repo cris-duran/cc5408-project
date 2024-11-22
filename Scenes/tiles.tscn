@@ -1,0 +1,123 @@
+[gd_scene load_steps=29 format=3 uid="uid://blwx2hvdlimyk"]
+
+[ext_resource type="PackedScene" uid="uid://bxfk6y7qt57pp" path="res://Scenes/cube_mesh.tscn" id="1_13n6b"]
+[ext_resource type="Texture2D" uid="uid://bfetwydrfu7us" path="res://Assets/Images/cube_0.png" id="2_n2tyx"]
+[ext_resource type="PackedScene" uid="uid://5diyy5xctnu3" path="res://Scenes/hrectangle_mesh.tscn" id="2_nfx8a"]
+[ext_resource type="PackedScene" uid="uid://dreqr415xlk1v" path="res://Scenes/vrectangle_mesh.tscn" id="3_a7lpo"]
+[ext_resource type="Texture2D" uid="uid://cphrxh5txgc6c" path="res://Assets/Images/cube_1.png" id="3_k5s5b"]
+[ext_resource type="Texture2D" uid="uid://desdmflvker1v" path="res://Assets/Images/cube_2.png" id="4_y6wil"]
+[ext_resource type="Texture2D" uid="uid://cv8recs7uyqqc" path="res://Assets/Images/cube_3.png" id="5_yftk7"]
+[ext_resource type="Texture2D" uid="uid://cc73ofw6xsw7r" path="res://Assets/Images/rectangleH_0.png" id="7_0sfst"]
+[ext_resource type="Texture2D" uid="uid://c2sj6h5jgunto" path="res://Assets/Images/rectangleH_1.png" id="8_tdlge"]
+[ext_resource type="Texture2D" uid="uid://qalyurw17sdm" path="res://Assets/Images/rectangleH_2.png" id="9_viisc"]
+[ext_resource type="Texture2D" uid="uid://d2qlkabve6fwt" path="res://Assets/Images/rectangleH_3.png" id="10_khr1l"]
+[ext_resource type="Texture2D" uid="uid://c1vwsmjyv5j41" path="res://Assets/Images/rectangle_0.png" id="12_ylnt8"]
+[ext_resource type="Texture2D" uid="uid://ku8r4y484n8k" path="res://Assets/Images/rectangle_1.png" id="13_1s0l2"]
+[ext_resource type="Texture2D" uid="uid://x6l2yfg4v0qi" path="res://Assets/Images/rectangle_2.png" id="14_3iff5"]
+[ext_resource type="Texture2D" uid="uid://btt6hrw5ol0ou" path="res://Assets/Images/rectangle_3.png" id="15_ohkwr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wdnu5"]
+shading_mode = 0
+albedo_texture = ExtResource("2_n2tyx")
+uv1_scale = Vector3(3, 2, 1)
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6uan8"]
+shading_mode = 0
+albedo_texture = ExtResource("3_k5s5b")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wlqo"]
+shading_mode = 0
+albedo_texture = ExtResource("4_y6wil")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b8xew"]
+shading_mode = 0
+albedo_texture = ExtResource("5_yftk7")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vttcn"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bkkav"]
+shading_mode = 0
+albedo_texture = ExtResource("7_0sfst")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpcxu"]
+shading_mode = 0
+albedo_texture = ExtResource("8_tdlge")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7vnd2"]
+shading_mode = 0
+albedo_texture = ExtResource("9_viisc")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85gh5"]
+shading_mode = 0
+albedo_texture = ExtResource("10_khr1l")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vojjy"]
+shading_mode = 0
+albedo_texture = ExtResource("12_ylnt8")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8jo0"]
+shading_mode = 0
+albedo_texture = ExtResource("13_1s0l2")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ekqb2"]
+shading_mode = 0
+albedo_texture = ExtResource("14_3iff5")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ur6ap"]
+shading_mode = 0
+albedo_texture = ExtResource("15_ohkwr")
+uv1_scale = Vector3(3, 2, 1)
+
+[node name="tiles" type="Node3D"]
+
+[node name="Cube_0" parent="." instance=ExtResource("1_13n6b")]
+surface_material_override/0 = SubResource("StandardMaterial3D_wdnu5")
+
+[node name="Cube_1" parent="." instance=ExtResource("1_13n6b")]
+surface_material_override/0 = SubResource("StandardMaterial3D_6uan8")
+
+[node name="Cube_2" parent="." instance=ExtResource("1_13n6b")]
+surface_material_override/0 = SubResource("StandardMaterial3D_6wlqo")
+
+[node name="Cube_3" parent="." instance=ExtResource("1_13n6b")]
+surface_material_override/0 = SubResource("StandardMaterial3D_b8xew")
+
+[node name="BlackCube" parent="." instance=ExtResource("1_13n6b")]
+surface_material_override/0 = SubResource("StandardMaterial3D_vttcn")
+
+[node name="Hrectangle_0" parent="." instance=ExtResource("2_nfx8a")]
+surface_material_override/0 = SubResource("StandardMaterial3D_bkkav")
+
+[node name="Hrectangle_1" parent="." instance=ExtResource("2_nfx8a")]
+surface_material_override/0 = SubResource("StandardMaterial3D_kpcxu")
+
+[node name="Hrectangle_2" parent="." instance=ExtResource("2_nfx8a")]
+surface_material_override/0 = SubResource("StandardMaterial3D_7vnd2")
+
+[node name="Hrectangle_3" parent="." instance=ExtResource("2_nfx8a")]
+surface_material_override/0 = SubResource("StandardMaterial3D_85gh5")
+
+[node name="Vrectangle_0" parent="." instance=ExtResource("3_a7lpo")]
+surface_material_override/0 = SubResource("StandardMaterial3D_vojjy")
+
+[node name="Vrectangle_1" parent="." instance=ExtResource("3_a7lpo")]
+surface_material_override/0 = SubResource("StandardMaterial3D_t8jo0")
+
+[node name="Vrectangle_2" parent="." instance=ExtResource("3_a7lpo")]
+surface_material_override/0 = SubResource("StandardMaterial3D_ekqb2")
+
+[node name="Vrectangle_3" parent="." instance=ExtResource("3_a7lpo")]
+surface_material_override/0 = SubResource("StandardMaterial3D_ur6ap")

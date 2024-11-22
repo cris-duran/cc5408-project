@@ -6,7 +6,7 @@ signal player_win()
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-const sensitibity = 0.002
+const sensitibity = 0.00001
 const SIDE_IMPULSE = 5.0
 
 var rotation_angle = deg_to_rad(-90)
@@ -115,7 +115,7 @@ func _physics_process(delta: float) -> void:
 		left_chain.back_hook=true
 		var direction = (left_chain.global_transform.origin-global_transform.origin).normalized()
 		var distance = global_transform.origin.distance_to(left_chain.global_transform.origin)
-		apply_central_impulse(direction*distance*3)
+		apply_central_impulse(direction*distance*2+direction*25)
 		left_chain.hooked=false
 	
 	# Maneja el movimiento del objeto cuando la cadena izquierda se angancha a uno
@@ -181,9 +181,9 @@ func _physics_process(delta: float) -> void:
 				#left_chain.apply_central_impulse((global_transform.origin-left_chain_target.global_transform.origin).normalized()*-50)
 				#left_chain.max_contacts_reported=1
 				
-	camera_3d.rotation_degrees.x-=mouse_input.y*delta*10.0
+	camera_3d.rotation_degrees.x-=mouse_input.y*delta*5.0
 	camera_3d.rotation_degrees.x=clamp(camera_3d.rotation_degrees.x, -80,80)
-	rotation_degrees.y-=mouse_input.x*delta*10.0
+	rotation_degrees.y-=mouse_input.x*delta*5.0
 	mouse_input=Vector2.ZERO
 	
 	if hook_in_air:

@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlj8ku0okq4x0"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/defeat_menu.gd" id="1_sridj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_66qgh"]
+font_size = 79
+font_color = Color(1, 0, 0.0431373, 1)
+
+[node name="Defeat_menu" type="CanvasLayer"]
+script = ExtResource("1_sridj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = -1
+anchor_left = 0.47
+anchor_top = 0.358
+anchor_right = 0.47
+anchor_bottom = 0.358
+offset_left = -544.44
+offset_top = -234.984
+offset_right = 616.56
+offset_bottom = 420.016
+color = Color(0, 0, 0, 0.894118)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.47
+anchor_top = 0.333
+anchor_right = 0.47
+anchor_bottom = 0.333
+offset_left = -488.44
+offset_top = -203.784
+offset_right = 511.56
+offset_bottom = 396.216
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "        YOU ARE DOOMED"
+label_settings = SubResource("LabelSettings_66qgh")
+
+[node name="Retry" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0.976471, 0.988235, 1, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "RETRY"
+
+[node name="back to menu" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0.602579, 0.832551, 0.996838, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "RETURN TO MAIN MENU"
+
+[node name="exit" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0.631373, 0.0784314, 0.129412, 0.8)
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "EXIT THE GAME"
+
+[connection signal="pressed" from="VBoxContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="VBoxContainer/back to menu" to="." method="_on_back_to_menu_pressed"]
+[connection signal="pressed" from="VBoxContainer/exit" to="." method="_on_exit_pressed"]

@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://fbrli2jl2qgb"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/victory_menu.gd" id="1_jrp5h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_78ps7"]
+font_size = 79
+font_color = Color(0.888973, 0.960145, 0.794742, 1)
+
+[node name="Victory_menu" type="CanvasLayer"]
+script = ExtResource("1_jrp5h")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = -1
+anchor_left = 0.49
+anchor_top = 0.526
+anchor_right = 0.49
+anchor_bottom = 0.526
+offset_left = -564.48
+offset_top = -340.848
+offset_right = 590.52
+offset_bottom = 315.152
+color = Color(1, 1, 1, 0.6)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.47
+anchor_top = 0.333
+anchor_right = 0.47
+anchor_bottom = 0.333
+offset_left = -488.44
+offset_top = -203.784
+offset_right = 511.56
+offset_bottom = 396.216
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "              YOU ASCEND!"
+label_settings = SubResource("LabelSettings_78ps7")
+
+[node name="next level" type="Button" parent="VBoxContainer"]
+modulate = Color(1, 1, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "NEXT LEVEL"
+
+[node name="retry" type="Button" parent="VBoxContainer"]
+modulate = Color(0.852522, 1, 0.574251, 0.8)
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "RETRY"
+
+[node name="back_to_menu" type="Button" parent="VBoxContainer"]
+modulate = Color(0.602579, 0.832551, 0.996838, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "RETURN TO MAIN MENU"
+
+[node name="exit" type="Button" parent="VBoxContainer"]
+modulate = Color(0.985798, 0, 0.167321, 0.858824)
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "EXIT THE GAME"
+
+[connection signal="pressed" from="VBoxContainer/retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="VBoxContainer/back_to_menu" to="." method="_on_back_to_menu_pressed"]
+[connection signal="pressed" from="VBoxContainer/exit" to="." method="_on_exit_pressed"]
